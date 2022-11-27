@@ -39,7 +39,7 @@
 	
 	function processLink() {
 		//if intra link
-		await loadPage( this.href )
+		loadPage( this.href )
 		return false
 	}
 	onpopstate = e=> {
