@@ -11,7 +11,7 @@
 - [./dir/subpage](./dir/subpage)
 
 
-## Pages that should not work<br>
+## Pages that should not work
 
 - [./page1.md](./page1.md)
 - [./page1.html](./page1.html)
