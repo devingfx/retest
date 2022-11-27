@@ -1,4 +1,5 @@
 // import { $, $$, HTML } from 'vanill.es/DOM_.js'
+import YAML from './vanill.es/String/YAML.js'
 import MD from './vanill.es/String/MD.js'
 
 import config from './config.js'
