@@ -23,11 +23,34 @@
 	
 	const $container = document.querySelector`main .container`
 	
-	window.onhashchange = async e=> {
+	const init = ()=> {
+		pageInfo.title = document.title
+		history.replaceState(pageInfo, pageInfo.title, pageInfo.url)
+		for (const link of document.links) {
+		    link.onclick = processLink
+		}
+	}
+	
+	const loadPage = url=> fetch( url ).then( res=> res.text() )
+				.then( src=> ({ title: `DM docs - ${url}`, url, src })
+				.then( ({ title, url, src })=> {
+					history.pushState( { title, url, src }, title, url )
+				})
+	
+	function processLink() {
+		//if intra link
+		await loadPage( this.href )
+		return false
+	}
+	onpopstate = e=> {
+		$container.innerHTML = e.state.src
+		document.title = e.state.title
+	}
+	/*window.onhashchange = async e=> {
 		
 		const url = `/retest/${location.hash.slice(1)}.md`
     
-		let src = await fetch( url ).then( res=> res.text() )
+		let src = await loadPage( url )
 		
 		$container.innerHTML = src
 		document.title = `DM docs - ${url}`
@@ -37,7 +60,7 @@
 		// ? ( location.hash = '#String&DOM&EventojLancilo&SVG' )
 		? ( location.hash = '#README' )
 		: requestAnimationFrame( onhashchange )
-	
+	*/
 </script>
 
 
