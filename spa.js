@@ -1,4 +1,4 @@
-import { $, $$, HTML } from 'vanill.es/DOM_.js'
+// import { $, $$, HTML } from 'vanill.es/DOM_.js'
 import MD from 'vanill.es/String/MD.js'
 
 import config from './config.js'
@@ -10,7 +10,15 @@ const log = DEBUG
 
 var $container
 
-const init = ()=> {
+const init = async ()=> {
+	
+	await MD.import({
+		html: true,
+		linkify: true,
+		typographer: true,
+		highlight,	//@see https://markdown-it.github.io/markdown-it/#MarkdownIt
+	})
+
 	$container = document.querySelector( config.container )
 	loadPage( ''+document.location )//, !!$container.textContent && $container.textContent )
 }
@@ -25,6 +33,59 @@ const loadPage = ( href, _url = href, url = config.locate(href) )=>
 			onpopstate({ state: { href, title, url, src } })
 		})
 
+
+const highlight = ( str, lang )=> {
+
+	const escapeHTML = html=> new Option(html).innerHTML
+	const dom2hl = n=> 
+			n.nodeType == n.ELEMENT_NODE
+				? `<el><tag>${n.localName}</tag>${
+						[...n.attributes]
+							.map( att=> `<att>${att.name}${att.value!==''?`<v>${att.value}</v>`:''}</att>`).join('')
+					}</el>${
+						[...n.childNodes].map(dom2hl).join('')
+				}<el><tag>/${n.localName}</tag></el>`
+			:n.nodeType == n.TEXT_NODE
+				? `<text>${n.parentNode.localName == 'script' ? `<code js highlighted>${js2hl(n.textContent)}</code>` : escapeHTML(n.textContent)}</text>`
+			:n.nodeType == n.COMMENT_NODE
+				? `<comment>${escapeHTML(n.textContent)}</comment>`
+			:''
+	,	parseHTML = str=> {let t = document.createElement('template'); t.innerHTML = str; return t.content.childNodes }
+	,	js2hl = s=> {
+			const tokens = {
+				keyword: 'import export from const let var class extends return typeof instanceof in do as new of'.split(' ').map( s=> new RegExp('\\b'+s+'\\b','g') )
+			,	function: 'function \\=\\> async await'.split(' ').map( s=> new RegExp(s,'g') )
+			,	intrinsic: 'undefined null NaN true false'.split(' ').map( s=> new RegExp(s,'g') )
+			,	token: '\\{ \\} \\( \\) \\[ \\] ,'.split(' ').map( s=> new RegExp(s,'g') )
+			,	string: `' " \``.split(' ').reverse().map( s=> new RegExp(s+'(.*?)'+s,'gs') )
+			,	number: [ /(?<![˻˺]\d*)\d[\d\.]?/g ]
+			,	comment: [ /\/\*(.*?)\*\//gs, /\/\/(.*)/g ]
+			}
+			const strings = [], comments = []
+			s = tokens.string.reduce( (s,tok)=> s.replace(tok,s=>'˻'+(strings.push(s)-1)+'˺'), s )
+			s = tokens.comment.reduce( (s,tok)=> s.replace(tok,s=>'˺'+(comments.push(s)-1)+'˻'), s )
+			//console.log(strings,s)
+			s = tokens.token.reduce( (s,tok)=> s.replace(tok,s=> `<token t="${s}">${s}</token>`), s )
+			s = tokens.keyword.reduce( (s,tok)=> s.replace(tok,s=> `<keyword t="${s}">${s}</keyword>`), s )
+			s = tokens.function.reduce( (s,tok)=> s.replace(tok,s=> `<function t="${s}">${s}</function>`), s )
+			s = tokens.intrinsic.reduce( (s,tok)=> s.replace(tok,s=> `<intrinsic t="${s}">${s}</intrinsic>`), s )
+			s = tokens.number.reduce( (s,tok)=> s.replace(tok,s=> `<intrinsic t="number">${s}</intrinsic>`), s )
+			s = s.replace(/˻(\d+)˺/g, (s,i)=> `<string t="${strings[i][0]}">${strings[i][0] == '`' ? `<code html highlighted>${[...parseHTML(strings[i])].map(dom2hl).join('')}</code>` : escapeHTML(strings[i])}</string>` )
+			s = s.replace(/˺(\d+)˻/g, (s,i)=> `<comment>${escapeHTML(comments[i])}</comment>` )
+
+			return s
+		}
+
+// 	requestAnimationFrame(addCodeCopyButton)
+
+	return lang == 'html'
+			? `<pre><code html highlighted>${ [...parseHTML(str)].map(dom2hl).join('') }</code></pre>`
+		: lang == 'javascript' || lang == 'js'
+			? `<pre><code js highlighted>${ js2hl(str) }</code></pre>`
+		: ''
+
+}
+
 document.addEventListener('click', e=> {
 	const target = e.target instanceof HTMLAnchorElement ? e.target : e.target.closest('a[href]')
 	if( !target ) return true
@@ -38,7 +99,7 @@ document.addEventListener('click', e=> {
 })
 window.onpopstate = e=> {
 	document.title = e.state.title
-	$container.innerHTML = e.state.src
+	$container.innerHTML = MD( e.state.src )
 }
 
 window.addEventListener( "load", init, false )
