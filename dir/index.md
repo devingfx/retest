@@ -1,4 +1,4 @@
-<a href="./">Home</a> / <a href="./dir/">dir</a> / <a href="./dir/subpage">subpage</a>
+<a href="./">Home</a> / <a href="./dir/">dir</a>
 <br>
 # Pages in dir/<br>
 
