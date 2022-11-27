@@ -1,6 +1,5 @@
-<a href="./">Home</a> / <a href="./page1">Page 1</a><br>
-<br>
+[Home](./) / [Page 1](./page1)
 
-# This is page 1<br>
+# This is page 1
 
 with a lorem ipsum...
