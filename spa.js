@@ -106,5 +106,5 @@ window.addEventListener( "load", init, false )
 Object.assign( window, {
 	loadPage,
 	init,
-	vanilles
+	MD
 })
