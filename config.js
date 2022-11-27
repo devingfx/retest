@@ -1,4 +1,4 @@
 export default {
-	root: '/'
-	container: 'body'
+	root: '/',
+	container: 'body',
 }
