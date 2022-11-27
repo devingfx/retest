@@ -1,5 +1,7 @@
+import { $, $$, HTML } from 'vanill.es/DOM_.js'
+import MD from 'vanill.es/String/MD.js'
+
 import config from './config.js'
-import * as vanilles from "http://localhost:8080/vanill.es/index.js"
 
 const DEBUG = /debug/.test( location.search )
 const log = DEBUG
