@@ -15,7 +15,7 @@ const init = ()=> {
 const loadPage = ( url, href = url )=>
 	fetch( url.slice(-1) == '/' ? url+'index.md' : url )
 		.then( res=> res.text() )
-		.then( src=> ({ href, title: `DM docs - ${url}`, url, src }) )
+		.then( src=> ({ href, title: `MDocs - ${url}`, url, src }) )
 		.then( ({ href, title, url, src })=> {
 			history.pushState( { href, title, url, src }, title, href )
 			onpopstate({ state: { href, title, url, src } })
