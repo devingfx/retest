@@ -27,6 +27,10 @@ const init = async ()=> {
 		.use( md.options.addons.markdownitDecorate )
 	)
 	
+	let styles
+	document.head.append( styles = document.createElement('link') )
+	styles.rel = "stylesheet"
+	styles.href = "./spa.css"
 	$container = document.querySelector( config.container )
 	loadPage( ''+document.location )//, !!$container.textContent && $container.textContent )
 }
