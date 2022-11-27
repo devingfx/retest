@@ -1,14 +1,17 @@
 [Home](./)
 
-# Home
+# Home<!--{.title}-->
 
-## Pages working
+## Pages working<!--{.subtitle}-->
 
 - [./](./)
 - [./page1](./page1)
 - [./page2](./page2)
 - [./dir/](./dir/)
 - [./dir/subpage](./dir/subpage)
+
+[Button](./dir/subpage)<!--{.button.primary}-->
+
 
 
 ## Pages that should not work
