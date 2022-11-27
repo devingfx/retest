@@ -1,3 +1,5 @@
+<a href="./">Home</a><br>
+<br>
 # Home
 
 ## Pages working
