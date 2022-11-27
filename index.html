@@ -30,18 +30,18 @@
 // 		}
 // 		history.replaceState( state, state.title, state.url )
 // 		onpopstate({ state })
-		loadPage( $container.textContent )
+		loadPage( $container.textContent, document.location )
 // 		for (const link of document.links) {
 // 		    link.onclick = processLink
 // 		}
 		
 	}
 	
-	const loadPage = url=> fetch( url ).then( res=> res.text() )
-				.then( src=> ({ title: `DM docs - ${url}`, url, src }) )
-				.then( ({ title, url, src })=> {
-					history.pushState( { title, url, src }, title, url )
-					onpopstate({ state: { title, url, src } })
+	const loadPage = ( url, href = url )=> fetch( url.slice(-1) == '/' ? url+'index.md' : url ).then( res=> res.text() )
+				.then( src=> ({ href, title: `DM docs - ${url}`, url, src }) )
+				.then( ({ href, title, url, src })=> {
+					history.pushState( { href, title, url, src }, title, href )
+					onpopstate({ state: { href, title, url, src } })
 				})
 	
 	document.addEventListener('click', e=>{
@@ -57,8 +57,8 @@
 		return false
 	})
 	window.onpopstate = e=> {
-		$container.innerHTML = e.state.src
 		document.title = e.state.title
+		$container.innerHTML = e.state.src
 	}
 	/*window.onhashchange = async e=> {
 		
