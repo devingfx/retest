@@ -31,9 +31,9 @@
 // 		history.replaceState( state, state.title, state.url )
 // 		onpopstate({ state })
 		loadPage( $container.textContent )
-		for (const link of document.links) {
-		    link.onclick = processLink
-		}
+// 		for (const link of document.links) {
+// 		    link.onclick = processLink
+// 		}
 		
 	}
 	
@@ -44,11 +44,16 @@
 					onpopstate({ state: { title, url, src } })
 				})
 	
-	function processLink() {
-		//if intra link
-		loadPage( this.href )
+	document.addEventListener('click', e=>{
+		//e.preventDefault()
+		const target = e.target instanceof HTMLAnchorElement ? e.target : e.target.closest('a[href]')
+		if( !target ) return true
+		
+		const isInternal = ( new URL(target.href) ).origin == location.origin
+		console.log( e.target, target, target.href, isInternal )
+		loadPage( target.href )
 		return false
-	}
+	})
 	window.onpopstate = e=> {
 		$container.innerHTML = e.state.src
 		document.title = e.state.title
