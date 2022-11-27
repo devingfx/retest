@@ -1,3 +1,4 @@
 export default {
-  root: '/'
+	root: '/'
+	container: 'body'
 }
