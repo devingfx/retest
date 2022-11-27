@@ -1,0 +1,59 @@
+
+pre:has(code) { position: relative }
+pre > button[copy] {
+	position: absolute;
+	right: .5rem;
+	top: .5rem;
+	opacity: 0;
+	transition: opacity .3s ease;
+}
+pre:hover > button[copy] { opacity: 1 }
+code[highlighted] el::before { content: "<" }
+code[highlighted] el::after { content: ">" }
+code[highlighted] att::before { content: " " }
+code[highlighted] att v::before { content: '="' }
+code[highlighted] att v::after { content: '"' }
+code[highlighted][html] comment::before { content: "<!--" }
+code[highlighted][html] comment::after { content: "-->" }
+
+code[highlighted] el { color: grey }
+code[highlighted] tag { color: hsl(207deg 61% 35%) }
+code[highlighted] att { color: hsl(201deg 76% 52%) }
+code[highlighted] att v { color: hsl(18deg 41% 36%) }
+/* code[highlighted] text { color: hsl(0 0 80%) } */
+code[highlighted][html] comment { color: #59672d }
+
+
+code[highlighted][js] keyword { color: hsl(207deg 61% 35%) }
+code[highlighted][js] function { color: red }
+code[highlighted][js] intrinsic { color: red }
+code[highlighted][js] intrinsic[t="number"] { color: #ff5050 }
+code[highlighted][js] token { color: red }
+code[highlighted][js] string { color: green }
+code[highlighted][js] comment { color: grey }
+code[highlighted][js] comment::before { content: "" }
+code[highlighted][js] comment::after { content: "" }
+
+/* place here your dark only css */
+
+pre { background: #1f2330; color: white }
+code[highlighted] tag { color: #569cd6 }
+code[highlighted] att { color: #9cdcfe }
+code[highlighted] att v { color: #c3886e }
+code[highlighted][js] tok[t="const"],
+code[highlighted][js] tok[t="var"],
+code[highlighted][js] tok[t="let"],
+code[highlighted][js] tok[t="import"],
+code[highlighted][js] tok[t="export"],
+code[highlighted][js] tok[t="from"],
+code[highlighted][js] tok[t="class"],
+code[highlighted][js] tok[t="extends"] { color: #569cd6 }
+
+code[highlighted][js] keyword { color: #569cd6 }
+code[highlighted][js] function { color: #a879fa }
+code[highlighted][js] intrinsic { color: #009688 }
+code[highlighted][js] intrinsic[t="number"] { color: #ff5050 }
+code[highlighted][js] token { color: #afafaf }
+code[highlighted][js] string { color: #4caf50 }
+code[highlighted][js] comment { color: grey }
+
