@@ -10,7 +10,7 @@
 - [./dir/](./dir/)
 - [./dir/subpage](./dir/subpage)
 
-[Button](./dir/subpage)<!--{.button.primary}-->
+[Button](./dir/subpage)<!--{.button.is-primary}-->[Button](./dir/subpage)<!--{.button.is-danger}-->
 
 
 
