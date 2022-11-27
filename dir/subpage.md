@@ -1,5 +1,5 @@
-<a href="./">Home</a> / <a href="./dir/">dir</a> / <a href="./dir/subpage">subpage</a>
-<br>
-# This is dir / subpage<br>
+[Home](./) / [dir](./dir/) / [Sub page](./dir/subpage)
 
-without anything in it<br>
+# This is the dir subpage
+
+without anything in it
