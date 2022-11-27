@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang=en class=content dir=ltr>
+<meta charset=UTF-8>
+<title>MD docs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<script type=module>
+
+	
+	const DEBUG = /debug/.test( location.search )
+	
+	const log = DEBUG
+					? ss=> (...a)=> console.log( ss.join(''), ...a) || a[0]
+					: ss=> o=>o
+	
+	
+	
+	const $container = document.querySelector`main .container`
+	
+	window.onhashchange = async e=> {
+		
+		const url = `/retest/${location.hash.slice(1)}.md`
+    
+		let src = await fetch( url ).then( res=> res.text() )
+		
+		$container.query.innerHTML = src
+		document.title = `DM docs - ${url}`
+	}
+	
+	!location.hash
+		// ? ( location.hash = '#String&DOM&EventojLancilo&SVG' )
+		? ( location.hash = '#README' )
+		: requestAnimationFrame( onhashchange )
+	
+</script>
+
+
+<main>
+	<div class="content container"></div>
+</main>
+
