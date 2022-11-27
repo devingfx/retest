@@ -1,1 +1,3 @@
-dir/index
+# Pages in dir/
+
+[subpage](./subpage)
