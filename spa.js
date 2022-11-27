@@ -17,20 +17,47 @@ const init = async ()=> {
 		linkify: true,
 		typographer: true,
 		highlight,	//@see https://markdown-it.github.io/markdown-it/#MarkdownIt
+		addons: {
+			markdownitFrontMatter: 'https://unpkg.com/markdown-it-front-matter@0.2.3/index.js',
+			markdownitDecorate: 'https://unpkg.com/markdown-it-decorate@1.2.2/index.js'
+		}
 	})
-
+	.then( md=>md
+		.use( md.options.addons.markdownitFrontMatter, fm=> MD.onFrontMatter(YAML(fm)) )
+		.use( md.options.addons.markdownitDecorate )
+	)
+	
 	$container = document.querySelector( config.container )
 	loadPage( ''+document.location )//, !!$container.textContent && $container.textContent )
 }
+
+MD.onFrontMatter = fm=> console.log(fm) // override this
+
+
+// MD.onFrontMatter = fm=> {
+// 	console.log( 'onFrontMatter:', fm )
+// 	if( !fm ) // no front matter > cleanup
+// 	{
+// 		$main.previousElementSibling?.matches('.hero')
+// 			&& $main.previousElementSibling.remove()
+// 		return
+// 	}
+// 	if( fm.hero )
+// 	{
+// 		$main.previousElementSibling?.matches('.hero')
+// 			&& $main.previousElementSibling.remove()
+// 		$main.addHTMLBefore( Hero(fm.hero) )
+// 	}
+// }
 
 const loadPage = ( href, _url = href, url = config.locate(href) )=>
 // 	fetch( url.slice(-1) == '/' ? url+'index.md' : url+'.md' )
 	fetch( url )
 		.then( res=> res.text() )
 		.then( src=> ({ href, title: `MDocs - ${url}`, url, src }) )
-		.then( ({ href, title, url, src })=> {
-			history.pushState( { href, title, url, src }, title, href )
-			onpopstate({ state: { href, title, url, src } })
+		.then( state=> {
+			history.pushState( state, state.title, state.href )
+			onpopstate({ state })
 		})
 
 
