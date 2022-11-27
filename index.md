@@ -1,27 +1,28 @@
-<a href="./">Home</a><br>
-<br>
-# Home<br>
+[Home](./)
 
-## Pages working<br>
+# Home
 
-<a href="./">./</a><br>
-<a href="./page1">./page1</a><br>
-<a href="./page2">./page2</a><br>
-<a href="./dir/">./dir/</a><br>
-<a href="./dir/subpage">./dir/subpage</a><br>
+## Pages working
+
+[./](./)
+[./page1](./page1)
+[./page2](./page2)
+[./dir/](./dir/)
+[./dir/subpage](./dir/subpage)
+
 
 ## Pages that should not work<br>
 
-<a href="./page1.md">./page1.md</a><br>
-<a href="./page1.html">./page1.html</a><br>
-<a href="./page1/">./page1/</a><br>
+[./page1.md](./page1.md)
+[./page1.html](./page1.html)
+[./page1/](./page1/)
 
-<a href="./page2.md">./page2.md</a><br>
-<a href="./page2.html">./page2.html</a><br>
-<a href="./page2/">./page2/</a><br>
+[./page2.md](./page2.md)
+[./page2.html](./page2.html)
+[./page2/](./page2/)
 
-<a href="./dir">./dir</a><br>
+[./dir](./dir)
 
-<a href="./dir/subpage.md">./dir/subpage.md</a><br>
-<a href="./dir/subpage.html">./dir/subpage.html</a><br>
-<a href="./dir/subpage/">./dir/subpage/</a><br>
+[./dir/subpage.md](./dir/subpage.md)
+[./dir/subpage.html](./dir/subpage.html)
+[./dir/subpage/](./dir/subpage/)
