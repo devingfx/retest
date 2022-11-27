@@ -47,7 +47,7 @@
 		loadPage( this.href )
 		return false
 	}
-	onpopstate = e=> {
+	window.onpopstate = e=> {
 		$container.innerHTML = e.state.src
 		document.title = e.state.title
 	}
