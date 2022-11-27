@@ -12,8 +12,9 @@ const init = ()=> {
 	loadPage( $container.textContent ? $container.textContent : ''+document.location, ''+document.location )
 }
 
-const loadPage = ( url, href = url )=>
-	fetch( url.slice(-1) == '/' ? url+'index.md' : url+'.md' )
+const loadPage = ( href, url = config.locate(href) )=>
+// 	fetch( url.slice(-1) == '/' ? url+'index.md' : url+'.md' )
+	fetch( url )
 		.then( res=> res.text() )
 		.then( src=> ({ href, title: `MDocs - ${url}`, url, src }) )
 		.then( ({ href, title, url, src })=> {
