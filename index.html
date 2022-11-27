@@ -7,7 +7,7 @@
 
 
 <main>
-	<div class="content container"></div>
+	<div class="content container"><a href=README.md>READ ME</a></div>
 </main>
 
 <script type=module>
@@ -24,12 +24,12 @@
 	const $container = document.querySelector`main .container`
 	
 	const init = ()=> {
-		const pageInfo = {
+		const state = {
 			title: document.title,
 			url: location.href,
 		}
-		history.replaceState( pageInfo, pageInfo.title, pageInfo.url )
-		
+		history.replaceState( state, state.title, state.url )
+		onpopstate({ state })
 		for (const link of document.links) {
 		    link.onclick = processLink
 		}
@@ -40,6 +40,7 @@
 				.then( src=> ({ title: `DM docs - ${url}`, url, src }) )
 				.then( ({ title, url, src })=> {
 					history.pushState( { title, url, src }, title, url )
+					onpopstate({ state: { title, url, src } })
 				})
 	
 	function processLink() {
