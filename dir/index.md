@@ -1,7 +1,10 @@
-<a href="./">Home</a> / <a href="./dir/">dir</a>
-<br>
-# Pages in dir/<br>
+---
+layout: listing.html
+title: Pages in dir/
+canonical: ./dir/
+---
+[Home](./) / [dir](./dir/) / [Sub page](./dir/subpage)
 
-[subpage](./subpage)<br>
-<a href="./subpage">subpage</a><br>
-<a href="./dir/subpage">dir/subpage</a><br>
+# Pages in dir/
+
+- [subpage](./dir/subpage)
