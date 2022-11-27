@@ -51,6 +51,8 @@
 		
 		const isInternal = ( new URL(target.href) ).origin == location.origin
 		console.log( e.target, target, target.href, isInternal )
+		if( !isInternal ) return true
+		e.preventDefault()
 		loadPage( target.href )
 		return false
 	})
