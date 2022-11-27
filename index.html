@@ -32,7 +32,7 @@
 	}
 	
 	const loadPage = url=> fetch( url ).then( res=> res.text() )
-				.then( src=> ({ title: `DM docs - ${url}`, url, src })
+				.then( src=> ({ title: `DM docs - ${url}`, url, src }) )
 				.then( ({ title, url, src })=> {
 					history.pushState( { title, url, src }, title, url )
 				})
