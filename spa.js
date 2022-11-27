@@ -12,6 +12,7 @@ var $container
 
 const init = async ()=> {
 	
+	await YAML.import()
 	await MD.import({
 		html: true,
 		linkify: true,
