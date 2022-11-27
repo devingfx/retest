@@ -10,8 +10,12 @@
 - [./dir/](./dir/)
 - [./dir/subpage](./dir/subpage)
 
-[Button](./dir/subpage)<!--{.button.is-primary}-->[Button](./dir/subpage)<!--{.button.is-danger}-->
+<div class="buttons">
 
+[Ok](./dir/subpage)<!--{.button.is-primary}-->
+[Cancel](./dir/subpage)<!--{.button.is-danger}-->
+
+</div>
 
 
 ## Pages that should not work
