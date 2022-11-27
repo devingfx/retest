@@ -24,11 +24,16 @@
 	const $container = document.querySelector`main .container`
 	
 	const init = ()=> {
-		pageInfo.title = document.title
-		history.replaceState(pageInfo, pageInfo.title, pageInfo.url)
+		const pageInfo = {
+			title: document.title,
+			url: location.href,
+		}
+		history.replaceState( pageInfo, pageInfo.title, pageInfo.url )
+		
 		for (const link of document.links) {
 		    link.onclick = processLink
 		}
+		
 	}
 	
 	const loadPage = url=> fetch( url ).then( res=> res.text() )
@@ -61,6 +66,7 @@
 		? ( location.hash = '#README' )
 		: requestAnimationFrame( onhashchange )
 	*/
+	window.addEventListener( "load", init, false )
 </script>
 
 
