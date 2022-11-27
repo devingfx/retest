@@ -29,7 +29,7 @@
     
 		let src = await fetch( url ).then( res=> res.text() )
 		
-		$container.query.innerHTML = src
+		$container.innerHTML = src
 		document.title = `DM docs - ${url}`
 	}
 	
