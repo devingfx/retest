@@ -1,4 +1,5 @@
 import config from './config.js'
+import * as vanilles from "http://localhost:8080/vanill.es/index.js"
 
 const DEBUG = /debug/.test( location.search )
 const log = DEBUG
@@ -41,5 +42,6 @@ window.onpopstate = e=> {
 window.addEventListener( "load", init, false )
 Object.assign( window, {
 	loadPage,
-	init
+	init,
+	vanilles
 })
