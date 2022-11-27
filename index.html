@@ -24,12 +24,13 @@
 	const $container = document.querySelector`main .container`
 	
 	const init = ()=> {
-		const state = {
-			title: document.title,
-			url: $container.textContent
-		}
-		history.replaceState( state, state.title, state.url )
-		onpopstate({ state })
+// // 		const state = {
+// 			title: document.title,
+// 			url: $container.textContent
+// 		}
+// 		history.replaceState( state, state.title, state.url )
+// 		onpopstate({ state })
+		loadPage( $container.textContent )
 		for (const link of document.links) {
 		    link.onclick = processLink
 		}
