@@ -67,6 +67,12 @@
 		: requestAnimationFrame( onhashchange )
 	*/
 	window.addEventListener( "load", init, false )
+	
+	Object.assign( window, {
+		loadPage,
+		init,
+		processLink
+	})
 </script>
 
 
