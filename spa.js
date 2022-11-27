@@ -9,10 +9,10 @@ var $container
 
 const init = ()=> {
 	$container = document.querySelector( config.container )
-	loadPage( $container.textContent ? $container.textContent : ''+document.location, ''+document.location )
+	loadPage( ''+document.location )//, !!$container.textContent && $container.textContent )
 }
 
-const loadPage = ( href, url = config.locate(href) )=>
+const loadPage = ( href, _url = href, url = config.locate(href) )=>
 // 	fetch( url.slice(-1) == '/' ? url+'index.md' : url+'.md' )
 	fetch( url )
 		.then( res=> res.text() )
