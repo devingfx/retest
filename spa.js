@@ -8,16 +8,18 @@ const log = DEBUG
 var $container
 
 const init = ()=> {
-	$container = document.querySelector`main .container`
-	loadPage( $container.textContent, ''+document.location )
+	$container = document.querySelector( config.container )
+	loadPage( $container.textContent ? $container.textContent : ''+document.location, ''+document.location )
 }
 
-const loadPage = ( url, href = url )=> fetch( url.slice(-1) == '/' ? url+'index.md' : url ).then( res=> res.text() )
-										.then( src=> ({ href, title: `DM docs - ${url}`, url, src }) )
-										.then( ({ href, title, url, src })=> {
-											history.pushState( { href, title, url, src }, title, href )
-											onpopstate({ state: { href, title, url, src } })
-										})
+const loadPage = ( url, href = url )=>
+	fetch( url.slice(-1) == '/' ? url+'index.md' : url )
+		.then( res=> res.text() )
+		.then( src=> ({ href, title: `DM docs - ${url}`, url, src }) )
+		.then( ({ href, title, url, src })=> {
+			history.pushState( { href, title, url, src }, title, href )
+			onpopstate({ state: { href, title, url, src } })
+		})
 
 document.addEventListener('click', e=> {
 	const target = e.target instanceof HTMLAnchorElement ? e.target : e.target.closest('a[href]')
