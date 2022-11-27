@@ -1,3 +1,3 @@
 # retest
 
-testing ghpages
+testing github pages with single page app navigation (History API)
