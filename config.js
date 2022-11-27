@@ -1,6 +1,7 @@
 export default {
 	root: '/',
 	container: 'body',
-// 	load: url=> url.replace( /\.html$/, '.md' )
-	load: url=> url.replace( /\/$/, '.md' )
+// 	locate: href=> href.slice(-1) == '/' ? href+'index.md' : href+'.md'
+// 	locate: url=> url.replace( /\.html$/, '.md' )
+	locate: url=> url.replace( /\/$/, '.md' )
 }
