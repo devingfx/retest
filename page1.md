@@ -1,4 +1,4 @@
-<a href="./">Home</a><br> / <a href="./page1">Page 1</a><br>
+<a href="./">Home</a> / <a href="./page1">Page 1</a><br>
 <br>
 
 # This is page 1<br>
