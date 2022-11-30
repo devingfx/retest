@@ -20,7 +20,7 @@ canonical		real			data
 /			/index.html		/index.md
 /page1/			/page1/index.html	/page1.md
 /page2/			/page2/index.html	/page2.md
-/dir/			/dir/index.html		/dir.md
+/dir/			/dir/index.html		/dir/index.md
 /dir/subpage/		/dir/subpage/index.html	/dir/subpage.md
 
 
@@ -29,7 +29,7 @@ canonical		real			data
 /			/index.html		/index.md
 /page1.html		/page1.html		/page1.md
 /page2.html		/page2.html		/page2.md
-/dir/			/dir/index.html		/dir.md		/dir/index.md
+/dir/			/dir/index.html		/dir/index.md
 /dir/subpage.html	/dir/subpage.html	/dir/subpage.md
 
 */
