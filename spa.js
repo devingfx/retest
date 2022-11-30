@@ -2,7 +2,7 @@
 import YAML from './vanill.es/String/YAML.js'
 import MD from './vanill.es/String/MD.js'
 
-import config from './config.js'
+import config from './.spa.config.js'
 
 const DEBUG = /debug/.test( location.search )
 const log = DEBUG
