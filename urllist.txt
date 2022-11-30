@@ -1,0 +1,5 @@
+https://devingfx.github.io/retest/
+https://devingfx.github.io/retest/page1
+https://devingfx.github.io/retest/page2
+https://devingfx.github.io/retest/dir/
+https://devingfx.github.io/retest/dir/subpage
